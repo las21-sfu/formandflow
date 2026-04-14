@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Max Fraser — Form & Flow</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <style>
+      /* ── HERO ── */
+      .mf-hero {
+        min-height: 80vh;
+        padding: 140px 0 80px 80px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 60px;
+        overflow: hidden;
+      }
+      .mf-hero-content {
+        max-width: 600px;
+      }
+      .mf-hero-image {
+        height: 100%;
+        width: 100%;
+        min-height: 500px;
+        position: relative;
+      }
+      .mf-hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .mf-eyebrow {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 24px;
+      }
+      .mf-title {
+        font-family: var(--font-display);
+        font-size: clamp(60px, 10vw, 130px);
+        line-height: 0.88;
+      }
+      .mf-title .gray {
+        color: #c0c0c0;
+      }
+      .mf-title .red {
+        color: var(--orange);
+      }
+      .mf-intro {
+        margin-top: 28px;
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.55);
+        line-height: 1.8;
+        max-width: 460px;
+      }
+      .source-btn {
+        margin-top: 28px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--black);
+        color: var(--white);
+        padding: 14px 24px;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background 0.2s;
+      }
+      .source-btn:hover {
+        background: var(--orange);
+      }
+
+      /* ── OVERPRODUCTION INTRO BAND ── */
+      .overproduction-band {
+        background: var(--orange);
+        padding: 56px 80px;
+        display: grid;
+        grid-template-columns: 1fr 1.6fr;
+        gap: 60px;
+        align-items: center;
+      }
+      .ob-label {
+        font-family: var(--font-display);
+        font-size: clamp(40px, 5vw, 64px);
+        color: var(--white);
+        line-height: 0.95;
+        text-transform: uppercase;
+      }
+      .ob-text {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.88);
+        line-height: 1.85;
+      }
+      .ob-text strong {
+        color: var(--white);
+        font-weight: 600;
+      }
+
+      /* ── DARK FAILURES SECTION ── */
+      .failures-section {
+        background: var(--gray-dark);
+        border-radius: 32px 32px 0 0;
+        padding: 100px 80px;
+      }
+      .fs-header {
+        margin-bottom: 64px;
+      }
+      .fs-eyebrow {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 16px;
+      }
+      .fs-title {
+        font-family: var(--font-display);
+        font-size: clamp(36px, 5vw, 60px);
+        color: var(--white);
+        line-height: 1;
+        max-width: 640px;
+      }
+      .fs-subtitle {
+        margin-top: 20px;
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.45);
+        max-width: 560px;
+        line-height: 1.8;
+      }
+
+      /* Failure cards — numbered, horizontal rule dividers */
+      .failure-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .failure-item {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        gap: 40px;
+        padding: 48px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        align-items: start;
+        transition: background 0.3s;
+      }
+      .failure-item:first-child {
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+      }
+      .fi-num {
+        font-family: var(--font-display);
+        font-size: 80px;
+        color: var(--orange);
+        line-height: 0.9;
+        opacity: 0.9;
+      }
+
+      .fi-tag {
+        display: inline-block;
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--orange);
+        border: 1px solid rgb(72, 134, 250);
+        padding: 4px 10px;
+        margin-bottom: 14px;
+        border-radius: 2px;
+      }
+      .fi-title {
+        font-family: var(--font-display);
+        font-size: 30px;
+        color: var(--white);
+        letter-spacing: 1px;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+      }
+      .fi-desc {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.8;
+        max-width: 620px;
+      }
+      .fi-desc em {
+        color: rgba(255, 255, 255, 0.75);
+        font-style: normal;
+        font-weight: 500;
+      }
+
+      /* ── EXPLODED VIEW IMAGE PLACEHOLDER ── */
+      .exploded-section {
+        background: var(--gray-dark);
+        padding: 0 80px 100px;
+      }
+      .exploded-wrapper {
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+      }
+      .exploded-inner {
+        aspect-ratio: 16/7;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        background: linear-gradient(
+          135deg,
+          #0d0d0d 0%,
+          #161616 50%,
+          #0a0a0a 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+      /* Decorative scattered parts pattern */
+      .exploded-inner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+            circle at 20% 40%,
+            rgba(232, 57, 14, 0.06) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 75% 60%,
+            rgba(232, 57, 14, 0.04) 0%,
+            transparent 35%
+          );
+      }
+      .exploded-icon-row {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+        opacity: 0.35;
+        font-size: 32px;
+        filter: grayscale(1);
+      }
+      .exploded-label {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .exploded-placeholder-text {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(232, 57, 14, 0.5);
+        border: 1px dashed rgba(232, 57, 14, 0.3);
+        padding: 8px 20px;
+        border-radius: 2px;
+      }
+      .exploded-caption {
+        padding: 20px 32px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+      }
+      .caption-label {
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--orange);
+        flex-shrink: 0;
+        padding-top: 2px;
+      }
+      .caption-text {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.4);
+        line-height: 1.65;
+      }
+
+      .exploded-inner {
+        position: relative;
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .exploded-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* use 'contain' if you don't want cropping */
+        display: block;
+      }
+
+      /* ── ANTIDOTE SECTION ── */
+      .antidote-section {
+        background: var(--black);
+        padding: 100px 80px;
+        position: relative;
+        overflow: hidden;
+      }
+      .antidote-section::before {
+        content: "ANTIDOTE";
+        position: absolute;
+        right: -20px;
+        top: 40px;
+        font-family: var(--font-display);
+        font-size: 160px;
+        color: rgba(255, 255, 255, 0.025);
+        letter-spacing: -4px;
+        pointer-events: none;
+        white-space: nowrap;
+      }
+      .antidote-header {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 80px;
+        align-items: start;
+        margin-bottom: 72px;
+      }
+      .ah-eyebrow {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 20px;
+      }
+      .ah-title {
+        font-family: var(--font-display);
+        font-size: clamp(52px, 7vw, 88px);
+        color: var(--white);
+        line-height: 0.9;
+        text-transform: uppercase;
+      }
+      .ah-title span {
+        color: var(--orange);
+      }
+      .ah-body {
+        padding-top: 8px;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.85;
+      }
+      .ah-body strong {
+        color: rgba(255, 255, 255, 0.85);
+        font-weight: 500;
+      }
+
+      /* Antidote principle rows */
+      .antidote-principles {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .ap-row {
+        display: grid;
+        grid-template-columns: 56px 1fr auto;
+        gap: 32px;
+        align-items: center;
+        padding: 36px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        transition: background 0.25s;
+        cursor: default;
+      }
+      .ap-row:hover {
+        background: rgba(232, 57, 14, 0.04);
+      }
+      .ap-check {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(18, 14, 232, 0.15);
+        border: 1px solid rgba(21, 45, 255, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        color: var(--orange);
+        flex-shrink: 0;
+        transition: background 0.25s, border-color 0.25s;
+      }
+      .ap-row:hover .ap-check {
+        background: var(--orange);
+        border-color: var(--orange);
+        color: var(--white);
+      }
+
+      .ap-principle {
+        font-family: var(--font-display);
+        font-size: 22px;
+        color: var(--white);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .ap-desc {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.7;
+        max-width: 580px;
+      }
+      .ap-tag {
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(14, 54, 232, 0.6);
+        border: 1px solid rgb(73, 121, 255);
+        padding: 5px 12px;
+        border-radius: 10px;
+        white-space: nowrap;
+      }
+
+      /* ── AGELESS DESIGN QUOTE BAND ── */
+      .ageless-band {
+        background: var(--orange);
+        padding: 72px 80px;
+        position: relative;
+        overflow: hidden;
+      }
+      .ageless-band::after {
+        content: "";
+        position: absolute;
+        right: -80px;
+        top: -80px;
+        width: 360px;
+        height: 360px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      .ageless-inner {
+        max-width: 800px;
+        position: relative;
+        z-index: 1;
+      }
+      .ageless-kicker {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.65);
+        margin-bottom: 20px;
+      }
+      .ageless-quote {
+        font-family: var(--font-display);
+        font-size: clamp(30px, 4vw, 52px);
+        color: var(--white);
+        line-height: 1.05;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .ageless-sub {
+        margin-top: 24px;
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.7;
+        max-width: 560px;
+      }
+
+      /* ── RETURN BANNER ── */
+      .return-banner {
+        margin: 80px 80px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 4px;
+        padding: 40px 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-decoration: none;
+        background: rgba(0, 0, 0, 0.02);
+        transition: background 0.3s;
+      }
+      .return-banner:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+      .return-banner .rb-label {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+      }
+      .return-banner .rb-title {
+        font-family: var(--font-display);
+        font-size: 36px;
+        color: var(--black);
+        letter-spacing: 2px;
+      }
+      .return-banner .rb-arrow {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: white;
+        flex-shrink: 0;
+        transition: transform 0.3s;
+      }
+      .return-banner:hover .rb-arrow {
+        transform: translateX(-6px);
+      }
+
+      /* REVEAL */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.12s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.24s;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 900px) {
+        .mf-hero {
+          padding: 120px 24px 0;
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .mf-hero-image {
+          min-height: 300px;
+          margin: 0 -24px;
+          width: calc(100% + 48px);
+        }
+        .overproduction-band {
+          padding: 56px 24px;
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .failures-section {
+          padding: 60px 24px;
+          border-radius: 20px 20px 0 0;
+        }
+        .failure-item {
+          grid-template-columns: 60px 1fr;
+          gap: 20px;
+        }
+        .fi-num {
+          font-size: 52px;
+        }
+        .exploded-section {
+          padding: 0 24px 60px;
+        }
+        .stat-bar {
+          padding: 40px 24px;
+          grid-template-columns: 1fr;
+          gap: 32px;
+          background-color: transparent;
+        }
+        .stat-bar-inner {
+          padding: 0;
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
+          padding-top: 24px;
+        }
+        .antidote-section {
+          padding: 60px 24px;
+        }
+        .antidote-header {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .ap-row {
+          grid-template-columns: 48px 1fr;
+          gap: 16px;
+        }
+        .ap-tag {
+          display: none;
+        }
+        .ageless-band {
+          padding: 56px 24px;
+        }
+        .return-banner {
+          margin: 40px 24px;
+          padding: 28px 24px;
+        }
+        .return-banner .rb-title {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body class="page-fade">
+    <nav>
+      <a href="index.html" class="nav-logo">Form <span>&</span> Flow</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Manifesto</a></li>
+        <li><a href="case-studies.html">Case Studies & 3D</a></li>
+        <li><a href="don-norman.html">Don Norman</a></li>
+        <li><a href="max-fraser.html" class="active">Max Fraser</a></li>
+      </ul>
+      <div class="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section class="mf-hero">
+      <div class="mf-hero-content">
+        <p class="mf-eyebrow">Max Fraser — Design Critic</p>
+        <h1 class="mf-title">
+          MAX<br /><span class="gray">FRASER.</span><br /><span class="red"
+            >THE CRISIS<br />OF MORE.</span
+          >
+        </h1>
+        <p class="mf-intro">
+          While Norman diagnoses how we use things, Fraser acts as the
+          <strong>moral conscience</strong> of the design world — interrogating
+          why we keep making so many of them.
+        </p>
+        <a
+          href="http://www.dezeen.com/2025/11/20/everything-wrong-max-fraser-performance-review/"
+          class="source-btn"
+          target="_blank"
+          rel="noopener"
+          >Source Material · Read Article ↗</a
+        >
+      </div>
+      <div class="mf-hero-image">
+        <img src="media/maxfraser.jpg" alt="Max Fraser" />
+      </div>
+    </section>
+
+    <!-- ── THREE FAILURES ── -->
+    <section class="failures-section">
+      <div class="fs-header">
+        <p class="fs-eyebrow">The Performance Review</p>
+        <h2 class="fs-title">WHY DESIGN<br />IS DECAYING.</h2>
+        <p class="fs-subtitle">
+          Fraser identifies three critical failures driving the collapse of
+          meaningful design practice in the modern industry.
+        </p>
+      </div>
+
+      <div class="failure-list">
+        <div class="failure-item reveal">
+          <div class="fi-num">01</div>
+          <div class="fi-body">
+            <span class="fi-tag">Corporate Conservatism</span>
+            <h3 class="fi-title">The Private Equity Problem</h3>
+            <p class="fi-desc">
+              Many pioneering design brands are now owned by private equity
+              firms that pressure designers to produce
+              <em>"low-risk," predictable products</em> that guarantee results
+              for shareholders. The incentive is not to innovate — it is to
+              repeat. This kills the visionary risk-taking that once gave
+              objects their character, replacing authorship with
+              committee-approved caution.
+            </p>
+          </div>
+        </div>
+
+        <div class="failure-item reveal reveal-delay-1">
+          <div class="fi-num">02</div>
+          <div class="fi-body">
+            <span class="fi-tag">Tech Invasion</span>
+            <h3 class="fi-title">Smart Devices, Stupid Outcomes</h3>
+            <p class="fi-desc">
+              We are seeing an influx of <em>"immersive experiences"</em> and
+              "smart" integrations that are often weak in concept and laden with
+              jargon. When a chair needs an app to measure posture, or a kettle
+              requires a Wi-Fi password, the design has become a
+              <em>distraction rather than a solution</em>. Connectivity should
+              only exist where it solves a genuine human problem — not to
+              justify a premium price point.
+            </p>
+          </div>
+        </div>
+
+        <div class="failure-item reveal reveal-delay-2">
+          <div class="fi-num">03</div>
+          <div class="fi-body">
+            <span class="fi-tag">Ethics of Obsolescence</span>
+            <h3 class="fi-title">Designed to Fail</h3>
+            <p class="fi-desc">
+              The current industry incentive model — where designers often earn
+              only a <em>3% to 5% royalty</em> — favours a "break-and-replace"
+              cycle over repairable products. Planned obsolescence is the
+              unethical practice of engineering a product to fail so the user is
+              forced to buy the next model. The object is never meant to outlive
+              its marketing campaign.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="exploded-section">
+      <div class="exploded-wrapper">
+        <div class="exploded-inner">
+          <img
+            src="media/ai_mirror.png"
+            alt="Exploded product view"
+            class="exploded-img"
+          />
+        </div>
+
+        <div class="exploded-caption">
+          <span class="caption-label">Fig. 01</span>
+          <p class="caption-text">
+            This AI mirror is a prime example of the "Tech Invasion"—an
+            immersive gadget that often complicates a basic morning routine with
+            unnecessary digital noise As designers, we must ask if connectivity
+            is solving a real problem or simply creating a new dependency; when
+            a mirror requires a software update to function, the technology has
+            become a hurdle rather than a help.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ANTIDOTE SECTION ── -->
+    <section class="antidote-section">
+      <div class="antidote-header">
+        <div>
+          <p class="ah-eyebrow">A Return to Honest Design</p>
+          <h2 class="ah-title">
+            THE<br /><span>ANTI<br />DOTE.</span>
+          </h2>
+        </div>
+        <div>
+          <p class="ah-body">
+            Fraser advocates for a return to <strong>"honest design"</strong> —
+            the idea that objects should be transparent in their function,
+            durable in their construction, and respectful of the user's
+            intelligence. True sustainability isn't only about green materials;
+            it's about <strong>Ageless Design</strong> — objects that remain
+            satisfying across generations because they are built on enduring
+            principles rather than passing trends.
+          </p>
+        </div>
+      </div>
+
+      <div class="antidote-principles">
+        <div class="ap-row reveal">
+          <div class="ap-check">✓</div>
+          <div class="ap-content">
+            <p class="ap-principle">Purpose-Driven Technology</p>
+            <p class="ap-desc">
+              Connectivity should only exist if it solves a real, identified
+              problem. A toaster does not need Bluetooth. An influx of "smart"
+              features is only intelligent if it reduces friction — not if it
+              creates a new dependency.
+            </p>
+          </div>
+          <span class="ap-tag">Principle 01</span>
+        </div>
+
+        <div class="ap-row reveal reveal-delay-1">
+          <div class="ap-check">✓</div>
+          <div class="ap-content">
+            <p class="ap-principle">Repairability as a Core Feature</p>
+            <p class="ap-desc">
+              We must shift toward a circular economy where objects are kept in
+              a perpetual loop — easily fixed, upgraded, and returned to use
+              rather than discarded. Repairability is not an afterthought; it is
+              the ethical foundation of design.
+            </p>
+          </div>
+          <span class="ap-tag">Principle 02</span>
+        </div>
+
+        <div class="ap-row reveal reveal-delay-2">
+          <div class="ap-check">✓</div>
+          <div class="ap-content">
+            <p class="ap-principle">Longevity Over Trends</p>
+            <p class="ap-desc">
+              Good design serves the everyday needs of people, aiming for
+              enduring aesthetics that slow down the "decay phase" of a
+              product's life. An object that remains satisfying after ten years
+              has achieved something a seasonal collection never can.
+            </p>
+          </div>
+          <span class="ap-tag">Principle 03</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── AGELESS DESIGN QUOTE BAND ── -->
+    <div class="ageless-band">
+      <div class="ageless-inner">
+        <p class="ageless-kicker">The Fraser Standard</p>
+        <h2 class="ageless-quote">
+          Ageless Design — objects that remain satisfying across generations.
+        </h2>
+        <p class="ageless-sub">
+          The goal is not to be timeless in a frozen, classical sense — it is to
+          produce work so resolved in its purpose and honesty that no trend
+          cycle can make it feel obsolete. That is the highest ambition of the
+          designed object.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── RETURN BANNER ── -->
+    <a href="index.html" class="return-banner">
+      <div>
+        <p class="rb-label">Back to Home</p>
+        <p class="rb-title">MANIFESTO</p>
+      </div>
+      <div class="rb-arrow">←</div>
+    </a>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h3>DESIGN<br /><span>FOR CLARITY.</span></h3>
+          <p>
+            An initiative advocating for clearer, more user-centered industrial
+            design practices in consumer products.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Manifesto</a></li>
+            <li><a href="case-studies.html">Case Studies & 3D</a></li>
+            <li><a href="don-norman.html">Don Norman</a></li>
+            <li><a href="max-fraser.html">Max Fraser</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Form & Function Initiative. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="#">Twitter</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+  </body>
+</html>
