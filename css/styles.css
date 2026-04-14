@@ -39,7 +39,6 @@ body {
 
 /* NAV */
 nav {
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -48,7 +47,6 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: transparent;
   transition: background 0.3s, backdrop-filter 0.3s;
 }
 nav.scrolled {

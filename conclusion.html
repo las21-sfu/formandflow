@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>See It Differently — Form & Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/conclusion.css" />
+    <style></style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a href="index.html" class="nav-logo">Form <span>&</span> Flow</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Manifesto</a></li>
+        <li><a href="case-studies.html">Case Studies & 3D</a></li>
+        <li><a href="don-norman.html">Don Norman</a></li>
+        <li><a href="max-fraser.html">Max Fraser</a></li>
+        <li><a href="conclusion.html" class="active">See It Differently</a></li>
+      </ul>
+      <div class="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <div class="hero-bg-text">SEE</div>
+      <p class="hero-eyebrow">Final Module · The Takeaway</p>
+      <h1 class="hero-title">
+        NOW<br />YOU <span class="orange">SEE</span><br />IT.
+      </h1>
+      <p class="hero-subtitle">
+        You’ve learned the vocabulary and the principles. Now, when you use a
+        product, you can better understand how and why it works, or why it
+        doesn’t. Design awareness changes how you see everyday interactions.
+      </p>
+      <div class="hero-scroll-hint">
+        <span>Scroll to explore</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- ── PRODUCT SCANNER ── -->
+    <section class="scanner-section">
+      <div class="scanner-header reveal">
+        <div>
+          <p class="section-eyebrow">Interactive Analysis</p>
+          <h2 class="scanner-title">ANNOTATE<br />THE OBJECT.</h2>
+        </div>
+        <div class="scanner-desc">
+          <p>
+            Hover the dots on each product to reveal how its design communicates
+            — or fails to. Switch between products to compare design quality
+            scores.
+          </p>
+        </div>
+      </div>
+
+      <div class="product-tabs">
+        <button class="ptab active" onclick="loadProduct(0, this)">
+          🚪 Norman Door
+        </button>
+        <button class="ptab" onclick="loadProduct(1, this)">
+          💡 Desk Lamp
+        </button>
+        <button class="ptab" onclick="loadProduct(2, this)">🫖 Kettle</button>
+      </div>
+
+      <div class="product-display">
+        <div class="product-visual" id="productVisual">
+          <!-- SVG + annotations injected by JS -->
+        </div>
+        <div class="product-info">
+          <div class="pi-score">
+            <span class="pi-score-num" id="piScore">3</span>
+            <div>
+              <div class="pi-score-label">Design Score</div>
+              <div class="pi-score-label">/ 10</div>
+            </div>
+          </div>
+          <div class="pi-product-name" id="piName">THE NORMAN DOOR</div>
+          <p class="pi-verdict" id="piVerdict">
+            A poorly designed door that relies on a label instead of its form. A
+            flat plate suggests pushing, even when the door must be pulled. The
+            problem isn’t the user—it’s the lack of clear affordances.
+          </p>
+          <div class="pi-bars" id="piBars"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CHECKLIST ── -->
+    <section class="checklist-section">
+      <div class="checklist-intro reveal">
+        <h2>NEXT TIME YOU<br />USE A <span class="orange">PRODUCT…</span></h2>
+        <p>
+          Tick each question you can answer <em>without reading a manual.</em>
+          A well-designed object should pass all five immediately. Click each
+          item to check it off.
+        </p>
+      </div>
+
+      <div class="checklist-grid" id="checklistGrid">
+        <!-- Injected by JS -->
+      </div>
+
+      <div class="checklist-result" id="checklistResult">
+        <div>
+          <div class="cr-score" id="crScore">0/5</div>
+          <div class="cr-label">Design Rating</div>
+        </div>
+        <div class="cr-text" id="crText">
+          <strong>Keep Going</strong>
+          Start clicking to evaluate the object.
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DESIGN AUDIT ── -->
+    <section class="audit-section">
+      <div class="audit-header reveal">
+        <p class="section-eyebrow">Rate any object around you</p>
+        <h2 class="audit-title">THE DESIGN<br />AUDIT.</h2>
+        <p class="audit-desc">
+          Pick up something near you — a pen, a cup, a lamp switch — and score
+          it across Norman's five principles. Watch the verdict emerge.
+        </p>
+      </div>
+
+      <div class="audit-grid">
+        <div class="audit-criteria" id="auditCriteria">
+          <!-- Injected by JS -->
+        </div>
+        <div class="audit-result">
+          <p class="ar-label">Your Verdict</p>
+          <div class="ar-gauge">
+            <svg viewBox="0 0 140 140">
+              <circle class="ar-gauge-track" cx="70" cy="70" r="60" />
+              <circle
+                class="ar-gauge-fill"
+                id="gaugeFill"
+                cx="70"
+                cy="70"
+                r="60"
+              />
+            </svg>
+            <div class="ar-gauge-num">
+              <div class="ar-gauge-val" id="gaugeVal">0</div>
+              <div class="ar-gauge-max">/ 25</div>
+            </div>
+          </div>
+          <div class="ar-verdict" id="auditVerdict">UNRATED</div>
+          <p class="ar-verdict-text" id="auditVerdictText">
+            Rate the five principles to reveal your object's design quality
+            score.
+          </p>
+          <button class="ar-reset" onclick="resetAudit()">↺ Reset Audit</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── MANIFESTO TIE-BACK ── -->
+    <section class="manifesto-section">
+      <div class="manifesto-inner">
+        <p class="manifesto-eyebrow reveal">Tying it Together</p>
+        <h2 class="manifesto-statement reveal">
+          DESIGN IS<br /><span class="orange">NEVER</span><br />NEUTRAL.
+        </h2>
+        <div class="manifesto-pillars reveal">
+          <div class="mp-item">
+            <div class="mp-num">01</div>
+            <div class="mp-title">Norman Said</div>
+            <p class="mp-body">
+              Every time you struggle with a product, it is the designer's
+              failure — not yours. Bad design teaches us to feel helpless.
+            </p>
+          </div>
+          <div class="mp-item">
+            <div class="mp-num">02</div>
+            <div class="mp-title">Fraser Said</div>
+            <p class="mp-body">
+              We are drowning in objects. The ethical designer asks not just
+              "does it work?" but "should it exist? Can it be repaired? Will it
+              last?"
+            </p>
+          </div>
+          <div class="mp-item">
+            <div class="mp-num">03</div>
+            <div class="mp-title">Our Manifesto</div>
+            <p class="mp-body">
+              Design against confusion. Every object is a conversation between
+              maker and user. Make it a clear one.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FINAL CALL ── -->
+    <div class="final-call">
+      <p class="fc-kicker">The One-Way Door</p>
+      <h2 class="fc-statement">YOU CANNOT<br />UN-SEE IT NOW.</h2>
+      <p class="fc-sub">
+        You’ll start to notice these moments: a door that gives the wrong
+        signal, controls that aren’t clearly labeled, interfaces that are harder
+        than they need to be. When something feels frustrating, it’s often a
+        design issue—not a user failure.
+      </p>
+      <div class="fc-buttons">
+        <a href="index.html" class="fc-btn-primary">← Return to Manifesto</a>
+        <a href="case-studies.html" class="fc-btn-outline"
+          >Review Case Studies</a
+        >
+      </div>
+    </div>
+
+    <!-- ── RETURN BANNER ── -->
+    <a href="index.html" class="return-banner">
+      <div>
+        <p class="rb-label">Back to Home</p>
+        <p class="rb-title">MANIFESTO</p>
+      </div>
+      <div class="rb-arrow">←</div>
+    </a>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h3>DESIGN<br /><span>FOR CLARITY.</span></h3>
+          <p>
+            An initiative advocating for clearer, more user-centered industrial
+            design practices in consumer products.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Manifesto</a></li>
+            <li><a href="case-studies.html">Case Studies & 3D</a></li>
+            <li><a href="don-norman.html">Don Norman</a></li>
+            <li><a href="max-fraser.html">Max Fraser</a></li>
+            <li><a href="conclusion.html">See It Differently</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Form & Flow Initiative. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="#">Twitter</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+    </footer>
+    <script src="js/conclusion.js"></script>
+  </body>
+</html>
