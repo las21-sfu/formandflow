@@ -358,7 +358,7 @@
   cursor: default;
 }
 .ap-row:hover {
-  background: rgba(232, 57, 14, 0.04);
+  background: rgba(14, 28, 232, 0.04);
 }
 .ap-check {
   width: 40px;
